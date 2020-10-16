@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "value": "devops-lab"
+    },
+    "adminUsername": {
+      "value": "devops"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys"
+        },
+        "secretName": "AdminPass"
+      }
+    },
+    "adminSshKey": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys"
+        },
+        "secretName": "AdminSshKey"
+      }
+    },
+    "dnsLabelPrefix": {
+      "value": "devops-lab-benli"
+    }
+  }
+}

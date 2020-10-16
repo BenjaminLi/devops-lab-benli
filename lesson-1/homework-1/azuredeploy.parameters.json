@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "value": "devops-lab"
+    },
+    "adminUsername": {
+      "value": "devops"
+    },
+    "adminPassword": {
+      "value": "d7QTPVWH6V5SvG6B4LIrKA=="
+    },
+    "adminSshKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1wMAFLR9Z3FboU/ToeoVQvJX9BnNcDqJIHWSMKvC/ASVfxddJEMq118FrMT87cib6kj+5D2kGZkgwuRsc+r5MMucEpGw1DzWO4iNpg0qGH4dXjGFZ3x4olziHu+RvXNX78Ic5/lwp7epDVqj7nopWgNrCexDV7h7F/2sZxdrNJE1mntl5xCkwFA4LH09Wv+/tNwCDYS5NhkB8cHIpAjJGHuPcKNyIVTybMeQyyp24rMAvBUgeHOPAKqaEV7DSoa8ftyw+gqolraQIK7GJ+tgsdl6cDWENbp35f9OFAgusGd0SWEDYT+l4zLcWulTCbOc4qZ0tsD1EbAgYtNQK4Psn benli@LAPTOP-REOC3ID2"
+    },
+    "dnsLabelPrefix": {
+      "value": "devops-lab-benli"
+    }
+  }
+}
