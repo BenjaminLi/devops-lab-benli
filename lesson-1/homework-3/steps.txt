@@ -6,8 +6,8 @@ az deployment group create \
   --template-file ./azuredeploy.json
 
 
-ssh-keygen -f "/home/$(id -nu)/.ssh/known_hosts" -R "devops-lab-<your name>.centralus.cloudapp.azure.com"
-ssh devops@devops-lab-<your name>.centralus.cloudapp.azure.com
+ssh-keygen -f "/home/$(id -nu)/.ssh/known_hosts" -R "devops-lab-benli.centralus.cloudapp.azure.com"
+ssh devops@devops-lab-benli.centralus.cloudapp.azure.com
 
 
 az vm delete -y --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
