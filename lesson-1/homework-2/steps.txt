@@ -1,0 +1,38 @@
+# Create key vault
+az keyvault create \
+  --name myVault-3721 \
+  --resource-group myResourceGroup \
+  --location centralus \
+  --enabled-for-template-deployment true
+
+az keyvault secret set --vault-name myVault-3721 --name "admin-key" --value "`cat ~/.ssh/id_rsa.pub`"
+
+az keyvault secret set --vault-name myVault-3721 --name "admin-password" --value `openssl rand -base64 16`|jq -r ".value"
+# !!! write down the password from output !!!
+
+# update json files
+
+az group deployment create \
+  --resource-group myResourceGroup \
+  --parameters @./azuredeploy.parameters.json \
+  --template-file ./azuredeploy.json
+
+
+ssh-keygen -f "/home/$(id -nu)/.ssh/known_hosts" -R "devops-lab.centralus.cloudapp.azure.com"
+
+ssh devops@devops-lab-<your name>.centralus.cloudapp.azure.com
+
+# use previously saved password
+ssh -i devops@devops-lab-<your name>.centralus.cloudapp.azure.com
+
+
+# Clean up
+az vm delete -y --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
+
+az disk delete -y --ids $(az disk list -g MyResourceGroup --query "[].id" -o tsv)
+for i in networkInterfaces publicIPAddresses networkSecurityGroups virtualNetworks
+do
+az resource delete --ids $(az resource list --query "[?type=='Microsoft.Network/${i}'].id" -o tsv)
+done
+
+
