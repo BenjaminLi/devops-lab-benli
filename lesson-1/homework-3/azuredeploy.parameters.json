@@ -28,7 +28,7 @@
       "value": "devops-lab-benli"
     },
     "configAppUri": {
-      "value": "https://raw.githubusercontent.com/BenjaminLi/devops-lab-benli/lesson-1/homework-3/lesson-1/setup-docker-compose.sh"
+      "value": "https://raw.githubusercontent.com/BenjaminLi/devops-lab-benli/lesson-1/lesson-1/homework-3/setup-docker-compose.sh"
     }
   }
 }
