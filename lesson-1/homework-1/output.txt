@@ -1,0 +1,257 @@
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ az deployment group create   --name blanktemplate   --resource-group myResourceGroup   --template-file $templateFile   --parameters @./azuredeploy.parameters.json
+{- Finished ..
+  "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Resources/deployments/blanktemplate",
+  "location": null,
+  "name": "blanktemplate",
+  "properties": {
+    "correlationId": "0b62eaf3-b6bc-42c5-a4bf-47f31f06d3e8",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "SecGroupNet",
+            "resourceType": "Microsoft.Network/networkSecurityGroups"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "vNet",
+            "resourceType": "Microsoft.Network/virtualNetworks"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labPublicIP",
+            "resourceType": "Microsoft.Network/publicIpAddresses"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-labNetInt",
+        "resourceType": "Microsoft.Network/networkInterfaces"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labNetInt",
+            "resourceType": "Microsoft.Network/networkInterfaces"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-lab",
+        "resourceType": "Microsoft.Compute/virtualMachines"
+      }
+    ],
+    "duration": "PT1M5.4512872S",
+    "error": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+        "resourceGroup": "myResourceGroup"
+      }
+    ],
+    "outputs": {
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "debug-output-var": {
+        "type": "Object",
+        "value": {
+          "disablePasswordAuthentication": false,
+          "ssh": {
+            "publicKeys": [
+              {
+                "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1wMAFLR9Z3FboU/ToeoVQvJX9BnNcDqJIHWSMKvC/ASVfxddJEMq118FrMT87cib6kj+5D2kGZkgwuRsc+r5MMucEpGw1DzWO4iNpg0qGH4dXjGFZ3x4olziHu+RvXNX78Ic5/lwp7epDVqj7nopWgNrCexDV7h7F/2sZxdrNJE1mntl5xCkwFA4LH09Wv+/tNwCDYS5NhkB8cHIpAjJGHuPcKNyIVTybMeQyyp24rMAvBUgeHOPAKqaEV7DSoa8ftyw+gqolraQIK7GJ+tgsdl6cDWENbp35f9OFAgusGd0SWEDYT+l4zLcWulTCbOc4qZ0tsD1EbAgYtNQK4Psn benli@LAPTOP-REOC3ID2",
+                "path": "/home/devops/.ssh/authorized_keys"
+              }
+            ]
+          }
+        }
+      },
+      "hostname": {
+        "type": "String",
+        "value": "devops-lab-benli.centralus.cloudapp.azure.com"
+      },
+      "sshCommand": {
+        "type": "String",
+        "value": "ssh devops@devops-lab-benli.centralus.cloudapp.azure.com"
+      }
+    },
+    "parameters": {
+      "adminPassword": {
+        "type": "SecureString"
+      },
+      "adminSshKey": {
+        "type": "String",
+        "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1wMAFLR9Z3FboU/ToeoVQvJX9BnNcDqJIHWSMKvC/ASVfxddJEMq118FrMT87cib6kj+5D2kGZkgwuRsc+r5MMucEpGw1DzWO4iNpg0qGH4dXjGFZ3x4olziHu+RvXNX78Ic5/lwp7epDVqj7nopWgNrCexDV7h7F/2sZxdrNJE1mntl5xCkwFA4LH09Wv+/tNwCDYS5NhkB8cHIpAjJGHuPcKNyIVTybMeQyyp24rMAvBUgeHOPAKqaEV7DSoa8ftyw+gqolraQIK7GJ+tgsdl6cDWENbp35f9OFAgusGd0SWEDYT+l4zLcWulTCbOc4qZ0tsD1EbAgYtNQK4Psn benli@LAPTOP-REOC3ID2"
+      },
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "authenticationType": {
+        "type": "String",
+        "value": "sshPublicKey"
+      },
+      "dnsLabelPrefix": {
+        "type": "String",
+        "value": "devops-lab-benli"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "networkSecurityGroupName": {
+        "type": "String",
+        "value": "SecGroupNet"
+      },
+      "subnetName": {
+        "type": "String",
+        "value": "Subnet"
+      },
+      "ubuntuOSVersion": {
+        "type": "String",
+        "value": "18.04-LTS"
+      },
+      "virtualNetworkName": {
+        "type": "String",
+        "value": "vNet"
+      },
+      "vmName": {
+        "type": "String",
+        "value": "devops-lab"
+      },
+      "vmSize": {
+        "type": "String",
+        "value": "Standard_B2s"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Network",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkInterfaces"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkSecurityGroups"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualNetworks"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "publicIpAddresses"
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Compute",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualMachines"
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "11711195421009909834",
+    "templateLink": null,
+    "timestamp": "2020-10-16T18:26:08.612728+00:00",
+    "validatedResources": null
+  },
+  "resourceGroup": "myResourceGroup",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ az vm delete --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
+Are you sure you want to perform this operation? (y/n): y
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ az disk delete -y --ids $(az disk list -g MyResourceGroup --query "[].id" -o tsv)
+ArgumentParseError: argument --ids: expected at least one argument
+Try this: 'az disk delete --name MyManagedDisk --resource-group MyResourceGroup'
+Still stuck? Run 'az disk delete --help' to view all commands or go to 'https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest' to learn more
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ az disk list -g MyResourceGroup
+[]
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ az disk list -g myResourceGroup
+[]
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$ for i in networkInterfaces publicIPAddresses networkSecurityGroups virtualNetworks
+> do
+> az resource delete --ids $(az resource list --query "[?type=='Microsoft.Network/${i}'].id" -o tsv)
+> done
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-1$

@@ -1,0 +1,18 @@
+# make changes to azuredeploy.json and azuredeploy.parameters.json
+
+az deployment group create \
+  --resource-group myResourceGroup \
+  --parameters @./azuredeploy.parameters.json \
+  --template-file ./azuredeploy.json
+
+
+ssh-keygen -f "/home/$(id -nu)/.ssh/known_hosts" -R "devops-lab-benli.centralus.cloudapp.azure.com"
+ssh devops@devops-lab-benli.centralus.cloudapp.azure.com
+
+
+az vm delete -y --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
+az disk delete -y --ids $(az disk list -g MyResourceGroup --query "[].id" -o tsv)
+for i in networkInterfaces publicIPAddresses networkSecurityGroups virtualNetworks
+do
+az resource delete --ids $(az resource list --query "[?type=='Microsoft.Network/${i}'].id" -o tsv)
+done

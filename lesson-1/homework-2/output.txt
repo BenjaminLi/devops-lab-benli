@@ -1,0 +1,271 @@
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-2$ git diff
+diff --git a/lesson-1/homework-2/azuredeploy.parameters.json b/lesson-1/homework-2/azuredeploy.parameters.json
+index d0588a1..a09c2bf 100644
+--- a/lesson-1/homework-2/azuredeploy.parameters.json
++++ b/lesson-1/homework-2/azuredeploy.parameters.json
+@@ -21,7 +21,7 @@
+         "keyVault": {
+           "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys"
+         },
+-        "secretName": "AdminSshKey"
++        "secretName": "AdminSshPubKey"
+       }
+     },
+     "dnsLabelPrefix": {
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-2$ az deployment group create   --name blanktemplate   --resource-group myResourceGroup   --template-file $templateFile   --parameters @./azuredeploy.parameters.json
+{- Finished ..
+  "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Resources/deployments/blanktemplate",
+  "location": null,
+  "name": "blanktemplate",
+  "properties": {
+    "correlationId": "decc5bf3-83d6-40c1-b9ae-109947635c29",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "SecGroupNet",
+            "resourceType": "Microsoft.Network/networkSecurityGroups"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "vNet",
+            "resourceType": "Microsoft.Network/virtualNetworks"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labPublicIP",
+            "resourceType": "Microsoft.Network/publicIpAddresses"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-labNetInt",
+        "resourceType": "Microsoft.Network/networkInterfaces"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labNetInt",
+            "resourceType": "Microsoft.Network/networkInterfaces"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-lab",
+        "resourceType": "Microsoft.Compute/virtualMachines"
+      }
+    ],
+    "duration": "PT1M28.9840948S",
+    "error": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+        "resourceGroup": "myResourceGroup"
+      }
+    ],
+    "outputs": {
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "debug-output-var": {
+        "type": "Object",
+        "value": {
+          "disablePasswordAuthentication": false,
+          "ssh": {
+            "publicKeys": [
+              {
+                "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1wMAFLR9Z3FboU/ToeoVQvJX9BnNcDqJIHWSMKvC/ASVfxddJEMq118FrMT87cib6kj+5D2kGZkgwuRsc+r5MMucEpGw1DzWO4iNpg0qGH4dXjGFZ3x4olziHu+RvXNX78Ic5/lwp7epDVqj7nopWgNrCexDV7h7F/2sZxdrNJE1mntl5xCkwFA4LH09Wv+/tNwCDYS5NhkB8cHIpAjJGHuPcKNyIVTybMeQyyp24rMAvBUgeHOPAKqaEV7DSoa8ftyw+gqolraQIK7GJ+tgsdl6cDWENbp35f9OFAgusGd0SWEDYT+l4zLcWulTCbOc4qZ0tsD1EbAgYtNQK4Psn benli@LAPTOP-REOC3ID2",
+                "path": "/home/devops/.ssh/authorized_keys"
+              }
+            ]
+          }
+        }
+      },
+      "hostname": {
+        "type": "String",
+        "value": "devops-lab-benli.centralus.cloudapp.azure.com"
+      },
+      "sshCommand": {
+        "type": "String",
+        "value": "ssh devops@devops-lab-benli.centralus.cloudapp.azure.com"
+      }
+    },
+    "parameters": {
+      "adminPassword": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys",
+            "resourceGroup": "KeyResourceGroup"
+          },
+          "secretName": "AdminPass"
+        },
+        "type": "SecureString"
+      },
+      "adminSshKey": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys",
+            "resourceGroup": "KeyResourceGroup"
+          },
+          "secretName": "AdminSshPubKey"
+        },
+        "type": "String"
+      },
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "authenticationType": {
+        "type": "String",
+        "value": "sshPublicKey"
+      },
+      "dnsLabelPrefix": {
+        "type": "String",
+        "value": "devops-lab-benli"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "networkSecurityGroupName": {
+        "type": "String",
+        "value": "SecGroupNet"
+      },
+      "subnetName": {
+        "type": "String",
+        "value": "Subnet"
+      },
+      "ubuntuOSVersion": {
+        "type": "String",
+        "value": "18.04-LTS"
+      },
+      "virtualNetworkName": {
+        "type": "String",
+        "value": "vNet"
+      },
+      "vmName": {
+        "type": "String",
+        "value": "devops-lab"
+      },
+      "vmSize": {
+        "type": "String",
+        "value": "Standard_B2s"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Network",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkInterfaces"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkSecurityGroups"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualNetworks"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "publicIpAddresses"
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Compute",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualMachines"
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "11711195421009909834",
+    "templateLink": null,
+    "timestamp": "2020-10-16T19:54:20.550139+00:00",
+    "validatedResources": null
+  },
+  "resourceGroup": "myResourceGroup",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-2$
+

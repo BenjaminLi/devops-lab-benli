@@ -1,0 +1,335 @@
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ az deployment group create \
+>   --resource-group myResourceGroup \
+>   --parameters @./azuredeploy.parameters.json \
+>   --template-file ./azuredeploy.json
+{- Finished ..
+  "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Resources/deployments/azuredeploy",
+  "location": null,
+  "name": "azuredeploy",
+  "properties": {
+    "correlationId": "60160704-cf8f-47e0-b9e5-614e3b32090b",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "SecGroupNet",
+            "resourceType": "Microsoft.Network/networkSecurityGroups"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "vNet",
+            "resourceType": "Microsoft.Network/virtualNetworks"
+          },
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labPublicIP",
+            "resourceType": "Microsoft.Network/publicIpAddresses"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-labNetInt",
+        "resourceType": "Microsoft.Network/networkInterfaces"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-labNetInt",
+            "resourceType": "Microsoft.Network/networkInterfaces"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-lab",
+        "resourceType": "Microsoft.Compute/virtualMachines"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+            "resourceGroup": "myResourceGroup",
+            "resourceName": "devops-lab",
+            "resourceType": "Microsoft.Compute/virtualMachines"
+          }
+        ],
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab/extensions/config-app",
+        "resourceGroup": "myResourceGroup",
+        "resourceName": "devops-lab/config-app",
+        "resourceType": "Microsoft.Compute/virtualMachines/extensions"
+      }
+    ],
+    "duration": "PT2M14.7115311S",
+    "error": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/devops-lab/extensions/config-app",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/devops-labNetInt",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/SecGroupNet",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIpAddresses/devops-labPublicIP",
+        "resourceGroup": "myResourceGroup"
+      },
+      {
+        "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vNet",
+        "resourceGroup": "myResourceGroup"
+      }
+    ],
+    "outputs": {
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "hostname": {
+        "type": "String",
+        "value": "devops-lab-benli.centralus.cloudapp.azure.com"
+      },
+      "sshCommand": {
+        "type": "String",
+        "value": "ssh devops@devops-lab-benli.centralus.cloudapp.azure.com"
+      }
+    },
+    "parameters": {
+      "adminPassword": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys",
+            "resourceGroup": "KeyResourceGroup"
+          },
+          "secretName": "AdminPass"
+        },
+        "type": "SecureString"
+      },
+      "adminSshKey": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/f9099539-f2fb-4dd1-80bd-24a100c4be9f/resourceGroups/KeyResourceGroup/providers/Microsoft.KeyVault/vaults/BenKeys",
+            "resourceGroup": "KeyResourceGroup"
+          },
+          "secretName": "AdminSshPubKey"
+        },
+        "type": "String"
+      },
+      "adminUsername": {
+        "type": "String",
+        "value": "devops"
+      },
+      "authenticationType": {
+        "type": "String",
+        "value": "sshPublicKey"
+      },
+      "configAppUri": {
+        "type": "String",
+        "value": "https://raw.githubusercontent.com/BenjaminLi/devops-lab-benli/lesson-1/lesson-1/homework-3/setup-docker-compose.sh"
+      },
+      "dnsLabelPrefix": {
+        "type": "String",
+        "value": "devops-lab-benli"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "networkSecurityGroupName": {
+        "type": "String",
+        "value": "SecGroupNet"
+      },
+      "subnetName": {
+        "type": "String",
+        "value": "Subnet"
+      },
+      "ubuntuOSVersion": {
+        "type": "String",
+        "value": "18.04-LTS"
+      },
+      "virtualNetworkName": {
+        "type": "String",
+        "value": "vNet"
+      },
+      "vmName": {
+        "type": "String",
+        "value": "devops-lab"
+      },
+      "vmSize": {
+        "type": "String",
+        "value": "Standard_B2s"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Network",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkInterfaces"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "networkSecurityGroups"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualNetworks"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "publicIpAddresses"
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Compute",
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualMachines"
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locations": [
+              "centralus"
+            ],
+            "properties": null,
+            "resourceType": "virtualMachines/extensions"
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "3769087157581829055",
+    "templateLink": null,
+    "timestamp": "2020-10-16T21:28:24.421794+00:00",
+    "validatedResources": null
+  },
+  "resourceGroup": "myResourceGroup",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ ssh-keygen -f "/home/$(id -nu)/.ssh/known_hosts" -R "devops-lab-benli.centralus.cloudapp.azure.com"
+# Host devops-lab-benli.centralus.cloudapp.azure.com found: line 6
+/home/benli/.ssh/known_hosts updated.
+Original contents retained as /home/benli/.ssh/known_hosts.old
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ ssh devops@devops-lab-benli.centralus.cloudapp.azure.com
+The authenticity of host 'devops-lab-benli.centralus.cloudapp.azure.com (168.61.149.86)' can't be established.
+ECDSA key fingerprint is SHA256:fFXq0y+Xuii3J9nVSAKsrxM0SR7n2+hAOZjvJFLSM7s.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'devops-lab-benli.centralus.cloudapp.azure.com,168.61.149.86' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 5.4.0-1031-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Oct 16 21:30:16 UTC 2020
+
+  System load:  0.17              Processes:              132
+  Usage of /:   6.4% of 28.90GB   Users logged in:        0
+  Memory usage: 10%               IP address for eth0:    10.1.0.4
+  Swap usage:   0%                IP address for docker0: 172.17.0.1
+
+ * Introducing autonomous high availability clustering for MicroK8s
+   production environments! Super simple clustering, hardened Kubernetes,
+   with automatic data store operations. A zero-ops HA K8s for anywhere.
+
+     https://microk8s.io/high-availability
+
+15 packages can be updated.
+15 updates are security updates.
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+devops@devops-lab:~$ az vm delete -y --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
+az: command not found
+az: command not found
+devops@devops-lab:~$ logout
+Connection to devops-lab-benli.centralus.cloudapp.azure.com closed.
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ az vm delete -y --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv)
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ az disk delete -y --ids $(az disk list -g MyResourceGroup --query "[].id" -o tsv)
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ for i in networkInterfaces publicIPAddresses networkSecurityGroups virtualNetworks
+> do
+> az resource delete --ids $(az resource list --query "[?type=='Microsoft.Network/${i}'].id" -o tsv)
+> done
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ id -nu
+benli
+benli@LAPTOP-REOC3ID2:~/devops-lab-benli/lesson-1/homework-3$ 
