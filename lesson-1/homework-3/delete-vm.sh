@@ -1,3 +1,4 @@
+set -x
 
 # Clean up
 az vm delete -y --ids $(az vm list -g myResourceGroup --query "[].id" -o tsv)
@@ -10,5 +11,4 @@ done
 
 az keyvault delete --name BenKeys
 
-az deployment group delete --resource-group myResourceGroup -n myResourceGroup
-
+az group delete -f --resource-group myResourceGroup

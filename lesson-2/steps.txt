@@ -1,0 +1,39 @@
+# logon to your VM created by lesson 1 homework 3
+sudo usermod -aG docker devops # if your admin user is in different name, use your own user name.
+
+# logout and login again to take new group membership
+# be aware that this setup is not favored by security people in production environment.
+
+docker pull elasticsearch
+# throw error
+# check from hub.docker.com
+
+docker pull elasticsearch:7.9.2
+docker images
+
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.9.2
+docker container ls
+
+docker exec -u root -it elasticsearch bash
+# you can poke around in the container.
+
+# go back to your local
+
+# test connectivity
+ssh -v devops-lab-benli.centralus.cloudapp.azure.com -p 9200
+# it will fail
+
+ssh -fNL 9200:localhost:9200 devops@devops-lab-benli.centralus.cloudapp.azure.com
+# in browser open: http://localhost:9200/
+# if you see the json output, elasticsearch is ready to serve.
+curl localhost:9200
+
+# Now download and install postman and complete following tasks:
+
+# 1.a. follow https://microsoft.github.io/AzureTipsAndTricks/blog/tip223.html to login azure api
+# 1.b. construct a request to query all the VMs under your resource group.
+# 1.c. use "code" button to get curl code and run it in shell command line.
+
+# 2. use github api to find out the list of files changed in the lastest commit of https://github.com/kubernetes/kubernetes repo.
+
+
