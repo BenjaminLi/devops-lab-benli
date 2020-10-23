@@ -11,4 +11,4 @@ done
 
 az keyvault delete --name BenKeys
 
-az group delete -f --resource-group myResourceGroup
+az group delete --resource-group myResourceGroup

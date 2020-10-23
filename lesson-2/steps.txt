@@ -30,6 +30,10 @@ curl localhost:9200
 
 # Now download and install postman and complete following tasks:
 
+# C:\Users\benli\AppData\Local\Postman\Postman.exe
+# "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --profile-directory="Profile 1"
+export PATH=$PATH:/mnt/c/Windows/System32:/mnt/c/Users/benli/AppData/Local/Postman:/mnt/c/'Program Files (x86)'/Google/Chrome/Application/
+
 # 1.a. follow https://microsoft.github.io/AzureTipsAndTricks/blog/tip223.html to login azure api
 # 1.b. construct a request to query all the VMs under your resource group.
 # 1.c. use "code" button to get curl code and run it in shell command line.
