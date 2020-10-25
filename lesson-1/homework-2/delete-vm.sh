@@ -10,5 +10,5 @@ done
 
 az keyvault delete --name BenKeys
 
-az deployment group delete --resource-group myResourceGroup -n myResourceGroup
+az group delete --resource-group myResourceGroup
 
