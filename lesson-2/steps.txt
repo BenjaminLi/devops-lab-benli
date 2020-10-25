@@ -3,6 +3,7 @@ sudo usermod -aG docker devops # if your admin user is in different name, use yo
 
 # logout and login again to take new group membership
 # be aware that this setup is not favored by security people in production environment.
+ssh devops@devops-lab-benli.centralus.cloudapp.azure.com
 
 docker pull elasticsearch
 # throw error
@@ -35,6 +36,9 @@ curl localhost:9200
 export PATH=$PATH:/mnt/c/Windows/System32:/mnt/c/Users/benli/AppData/Local/Postman:/mnt/c/'Program Files (x86)'/Google/Chrome/Application/
 
 # 1.a. follow https://microsoft.github.io/AzureTipsAndTricks/blog/tip223.html to login azure api
+# az ad sp create-for-rbac -n "devops-lab-benli"
+# az account show --query id
+
 # 1.b. construct a request to query all the VMs under your resource group.
 # 1.c. use "code" button to get curl code and run it in shell command line.
 
