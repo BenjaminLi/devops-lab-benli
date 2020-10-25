@@ -1,0 +1,90 @@
+########
+# Task 1
+########
+# create atlassin account
+# visit jira.com
+# click "Get it free", then follow the screen
+# it's easy to login with google if you like
+
+# once finish creating your first “Scrum" project in jira
+# install github plugin at:
+# https://marketplace.atlassian.com/apps/1219592/github-for-jira?hosting=cloud&tab=overview
+
+# once installed, Click "Manage app", and then "Get started"
+# following the screen to link your jira to your git repo
+
+# create a ticket in jira
+# make a commit in git, start the comment text with jira ticket number.
+
+# sample:
+
+# vscode ➜ /workspaces/vscode-remote-try-python/discordbot (master) $ git commit -m "DLG-1 test empty commit." --allow-empty
+# [master e08eadc] DLG-1 test empty commit.
+# 
+# vscode ➜ /workspaces/vscode-remote-try-python/discordbot (master) $ git log --oneline|head -3
+# e08eadc DLG-1 test empty commit.
+# 7ea98e7 Added user name to happy birthday command.
+# 2effe61 VS-2 this is a test.
+# 
+# vscode ➜ /workspaces/vscode-remote-try-python/discordbot (master) $ git push
+# Enumerating objects: 1, done.
+# Counting objects: 100% (1/1), done.
+# Writing objects: 100% (1/1), 201 bytes | 201.00 KiB/s, done.
+# Total 1 (delta 0), reused 0 (delta 0)
+# To https://github.com/pasuinthesky/discordbot.git
+#    7ea98e7..e08eadc  master -> master
+
+# now come back to jira ticket
+# we will see the commit and branch info on the right.
+
+########
+# Task 2
+########
+# 1. Invite 3 classmates to your jira project. 
+# 2. Observe the backlog board and actve sprint board after each step. Add yourself as watcher to other people's ticket if you want.
+# 2. Let every one create 1 story for each of others.
+# 3. Create 1 active sprint and move you assigned tickets into it. Start the sprint.
+# 4. Close your assigned tickets.
+# 5. Project owner close the active sprint when all tickets are closed.
+
+########
+# Task 2
+########
+# Use jira api to create a jira issue. 
+# 1. Finish step 2 at https://developer.atlassian.com/cloud/jira/software/getting-started/
+# 2. Create api token as per https://confluence.atlassian.com/cloud/api-tokens-938839638.html
+# 3. In postman, setup environment variable {{JiraHost}}
+# 4. Add new request as:
+#    Method: POST
+#    URI: https://{{JiraHost}}/rest/api/3/issue
+#    Authentication: Basic Authentication
+#        username: <your email address as atlassian login id>
+#        password: <your api token>
+#        body: <sample as below>
+{
+    "fields": {
+        "project": {
+            "key": "DLS"
+        },
+        "summary": "As a DEVOPS engineer, I would like to test jira cloud api",
+        "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+                {
+                    "type": "paragraph",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": "This is a test."
+                        }
+                    ]
+                }
+            ]
+        },
+        "issuetype": {
+            "name": "Story"
+        }
+    }
+}
+# End of body sample
